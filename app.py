@@ -143,7 +143,7 @@ def _risk_level_str(risk_level_raw):
     return {"HIGH": "critical", "MEDIUM": "elevated", "LOW": "routine"}.get(risk_level_raw, "nominal")
 
 
-_WINDOW_DAYS = {"24h": 1, "7d": 7, "30d": 30}
+_WINDOW_DAYS = {"today": 1, "24h": 1, "7d": 7, "30d": 30}
 
 
 def _get_window_violations(window_key):
@@ -296,7 +296,7 @@ def zones_risk_map():
     result["risk_level_str"] = result["risk_level"].apply(_risk_level_str)
     filtered = _apply_common_filters(result, pred_col)
 
-    max_pred = filtered[pred_col].max() if not filtered.empty else 1
+    max_pred = float(filtered[pred_col].max()) if not filtered.empty else 1.0
 
     zones = [
         {
@@ -308,13 +308,25 @@ def zones_risk_map():
             "riskLevel": row["risk_level_str"],
             "activeViolations": int(row["violations"]),
             "estimatedViolations": int(round(row[pred_col])),
-            "density": round(float(row[pred_col]) / max_pred, 3) if max_pred else 0,
+            "density": float(round(float(row[pred_col]) / float(max_pred), 3)) if max_pred else 0.0,
         }
         for _, row in filtered.iterrows()
     ]
 
     center_lat = float(result["centroid_lat"].mean()) if not result.empty else 12.97
     center_lng = float(result["centroid_lon"].mean()) if not result.empty else 77.59
+
+    import json
+    json.dumps({
+    "viewport": {
+        "center": {
+            "lat": round(center_lat, 4),
+            "lng": round(center_lng, 4)
+        },
+        "zoom": 11
+    },
+    "zones": zones,
+    })    
 
     return ok({
         "viewport": {"center": {"lat": round(center_lat, 4), "lng": round(center_lng, 4)}, "zoom": 11},
