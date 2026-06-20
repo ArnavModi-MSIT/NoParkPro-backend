@@ -520,21 +520,28 @@ def resources_summary():
     result, pred_col, p75, p90 = _get_hotspots()
     officers = int(result["recommended_officers"].sum())
     trucks = int(result["recommended_tow_trucks"].sum())
-    total = officers + trucks
+    active_total = officers + trucks
 
+    # There is no real city-wide headcount dataset, so "available" cannot be
+    # a measured number. Rather than show availableUnits == activeUnits
+    # (misleading — implies 100% deployment with zero slack), we report
+    # active deployment as the only real number, and omit a fabricated
+    # "available pool" entirely.
     data = {
-        "totalActiveResources": total,
+        "totalActiveResources": active_total,
         "availableOfficers": officers,
         "availableTowTrucks": trucks,
-        "availableUnits": total,
-        "activeUnits": total,
+        "activeUnits": active_total,
         "projectedCoverage": round(min(100, len(result[result["risk_level"] != "LOW"]) / max(1, len(result)) * 100 + 40), 1),
-        "simulatedImpactLabel": "Optimal" if total > 200 else "Moderate",
+        "simulatedImpactLabel": "Optimal" if active_total > 200 else "Moderate",
         "expectedViolationReductionPercentage": 28,
         "deltas": {"totalActiveResources": 0, "projectedCoverage": 0},
     }
     meta = {
         "note": "officers/towTrucks are real recommendations from the impact-score model. "
+                "activeUnits = officers + towTrucks currently recommended for deployment. "
+                "There is no real dataset for total city-wide force size, so an "
+                "'availableUnits' pool is intentionally not reported rather than fabricated. "
                 "projectedCoverage and expectedViolationReductionPercentage are illustrative "
                 "heuristics, not measured outcomes (no real enforcement feedback loop exists)."
     }
