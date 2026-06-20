@@ -16,6 +16,45 @@ cluster_mapping = joblib.load("models/cluster_mapping.pkl")
 feature_names = joblib.load("models/feature_names.pkl")
 
 
+def _load_base_dataframe():
+    """
+    Loads and pre-processes violations_clustered_slim.csv ONCE at import time.
+    The expensive parts (datetime parsing, ast.literal_eval, blocking-type flags)
+    happen exactly once per process lifetime instead of on every cache-miss
+    request — this is what was causing OOM kills on Render's free tier, since
+    each cache-miss re-ran ast.literal_eval + 5 .apply() passes over ~290K rows.
+    """
+    df = pd.read_csv(
+        "data/violations_clustered_slim.csv",
+        usecols=["cluster_id", "created_datetime", "violation_type", "police_station", "latitude", "longitude"],
+    )
+    df["created_datetime"] = pd.to_datetime(df["created_datetime"], format="ISO8601")
+    df["date"] = pd.to_datetime(df["created_datetime"].dt.date)
+    df["violation_type"] = df["violation_type"].apply(ast.literal_eval)
+
+    for vtype in TRAFFIC_BLOCKING_TYPES:
+        df[vtype] = df["violation_type"].apply(lambda x: int(vtype in x)).astype("int8")
+    df["is_blocking"] = df["violation_type"].apply(
+        lambda x: int(bool(set(x) & TRAFFIC_BLOCKING_TYPES))
+    ).astype("int8")
+
+    # downcast to shrink in-memory footprint
+    df["cluster_id"] = df["cluster_id"].astype("int32")
+    df["latitude"] = df["latitude"].astype("float32")
+    df["longitude"] = df["longitude"].astype("float32")
+
+    # violation_type lists are no longer needed after flags are computed —
+    # drop the heaviest column (list-of-strings per row) to free memory
+    df = df.drop(columns=["violation_type"])
+
+    return df
+
+
+# Loaded once when this module is first imported (Flask app startup),
+# not on every request.
+_BASE_DF = _load_base_dataframe()
+
+
 def get_risk_level(pred, p75, p90):
     if pred >= p90:
         return "HIGH"
@@ -57,18 +96,7 @@ def estimate_lane_blockage(parking_main_road, double_parking, lag_7_avg):
 
 
 def run_predictions():
-    df = pd.read_csv("data/violations_clustered_slim.csv")
-    df["created_datetime"] = pd.to_datetime(df["created_datetime"], format="ISO8601")
-    df["date"] = pd.to_datetime(df["created_datetime"].dt.date)
-
-    if isinstance(df["violation_type"].iloc[0], str):
-        df["violation_type"] = df["violation_type"].apply(ast.literal_eval)
-
-    for vtype in TRAFFIC_BLOCKING_TYPES:
-        df[vtype] = df["violation_type"].apply(lambda x: int(vtype in x))
-    df["is_blocking"] = df["violation_type"].apply(
-        lambda x: int(bool(set(x) & TRAFFIC_BLOCKING_TYPES))
-    )
+    df = _BASE_DF.copy()
 
     daily = (
         df.groupby(["cluster_id", "date"])
@@ -209,12 +237,6 @@ def run_predictions():
 
     latest["reasons"] = latest.apply(build_reasons, axis=1)
 
-    # for col in result.columns:
-    #     if str(result[col].dtype) in ["float32", "float16"]:
-    #         result[col] = result[col].astype(float)
-    
-    # for col in result.columns:
-    #     print(col, result[col].dtype)
     return latest, p75, p90
 
 
