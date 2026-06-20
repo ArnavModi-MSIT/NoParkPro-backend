@@ -43,7 +43,6 @@ at the bottom for what each one would need):
 
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "ai"))
 
 import json
 import time
@@ -54,7 +53,8 @@ import numpy as np
 import pandas as pd
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from predict import run_predictions
+
+from ai.predict import run_predictions
 
 app = Flask(__name__)
 CORS(app)
@@ -285,9 +285,7 @@ def zones_risk_map():
     ]
 
     center_lat = float(result["centroid_lat"].mean()) if not result.empty else 12.97
-    center_lng = float(result["centroid_lon"].mean()) if not result.empty else 77.59
-
-    print(filtered.dtypes)  
+    center_lng = float(result["centroid_lon"].mean()) if not result.empty else 77.59 
 
     return ok({
         "viewport": {"center": {"lat": round(center_lat, 4), "lng": round(center_lng, 4)}, "zoom": 11},
@@ -619,4 +617,8 @@ def health():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(
+        debug=True if os.environ.get("ENV")=="development" else False,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )

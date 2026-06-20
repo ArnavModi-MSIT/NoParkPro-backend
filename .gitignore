@@ -5,3 +5,4 @@ data/violations.csv
 data/violations_clustered.csv
 
 data/
+venv/
