@@ -1,0 +1,20 @@
+.venv
+venv
+NoParkPro-frontend-main/
+
+data/violations.csv
+data/violations_clustered.csv
+
+data/violations.csv              ← 100+ MB raw file, unused by live API
+data/violations_clustered.csv    ← superseded by the slim version
+data/cluster_features.csv        ← only used during training, not inference
+data/hotspot_predictions.csv     ← static snapshot, API recomputes fresh
+
+trim_violations_clustered.py
+
+__pycache__/
+*.pyc
+
+__pycache__/
+
+.env

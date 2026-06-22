@@ -1,0 +1,15 @@
+{
+  "worsening_clusters": 58,
+  "stable_clusters": 52,
+  "improving_clusters": 56,
+  "most_worsening": {
+    "cluster_id": 217,
+    "police_station": "HAL Old Airport",
+    "trend_pct": 97.2
+  },
+  "most_improving": {
+    "cluster_id": 24,
+    "police_station": "Mico Layout",
+    "trend_pct": -76.2
+  }
+}

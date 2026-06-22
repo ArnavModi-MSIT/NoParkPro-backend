@@ -1,0 +1,400 @@
+{
+  "overview": {
+    "total_violations": 298450,
+    "unique_vehicles": 231890,
+    "total_zones": 54,
+    "total_junctions": 150570,
+    "date_range": {
+      "start": "2023-11-09",
+      "end": "2024-04-08",
+      "days": 151
+    },
+    "avg_violations_per_day": 1963.5,
+    "peak_day_violations": 2858,
+    "peak_day_date": "2023-11-18"
+  },
+  "enforcement": {
+    "total_approved": 115400,
+    "total_rejected": 49754,
+    "approval_rate_pct": 69.9,
+    "scita_sent_pct": 85.7,
+    "validation_breakdown": [
+      {
+        "status": "approved",
+        "count": 115400
+      },
+      {
+        "status": "rejected",
+        "count": 49754
+      },
+      {
+        "status": "created1",
+        "count": 7044
+      },
+      {
+        "status": "processing",
+        "count": 678
+      },
+      {
+        "status": "duplicate",
+        "count": 320
+      }
+    ]
+  },
+  "top_junctions": [
+    {
+      "junction_name": "BTP051 - Safina Plaza Junction",
+      "violations": 15449
+    },
+    {
+      "junction_name": "BTP082 - KR Market Junction",
+      "violations": 11538
+    },
+    {
+      "junction_name": "BTP040 - Elite Junction",
+      "violations": 10718
+    },
+    {
+      "junction_name": "BTP044 - Sagar Theatre Junction",
+      "violations": 10549
+    },
+    {
+      "junction_name": "BTP211 - Central Street Junction",
+      "violations": 5388
+    },
+    {
+      "junction_name": "BTP058 - Subbanna Junction",
+      "violations": 5189
+    },
+    {
+      "junction_name": "BTP027 - Modi Bridge Junction",
+      "violations": 4584
+    },
+    {
+      "junction_name": "BTP020 - Hosahalli Metro Station",
+      "violations": 4101
+    },
+    {
+      "junction_name": "BTP057 - Anand Rao Junction",
+      "violations": 3935
+    },
+    {
+      "junction_name": "BTP080 - NR Road, SP Road Junction",
+      "violations": 3681
+    }
+  ],
+  "top_zones": [
+    {
+      "police_station": "Upparpet",
+      "violations": 34468
+    },
+    {
+      "police_station": "Shivajinagar",
+      "violations": 28044
+    },
+    {
+      "police_station": "Malleshwaram",
+      "violations": 22200
+    },
+    {
+      "police_station": "HAL Old Airport",
+      "violations": 20819
+    },
+    {
+      "police_station": "City Market",
+      "violations": 17646
+    },
+    {
+      "police_station": "Vijayanagara",
+      "violations": 14652
+    },
+    {
+      "police_station": "Rajajinagar",
+      "violations": 10998
+    },
+    {
+      "police_station": "Kodigehalli",
+      "violations": 10916
+    },
+    {
+      "police_station": "Magadi Road",
+      "violations": 8558
+    },
+    {
+      "police_station": "Jeevanbheemanagar",
+      "violations": 6736
+    }
+  ],
+  "vehicle_type_distribution": [
+    {
+      "vehicle_type": "SCOOTER",
+      "count": 94856
+    },
+    {
+      "vehicle_type": "CAR",
+      "count": 88870
+    },
+    {
+      "vehicle_type": "MOTOR CYCLE",
+      "count": 40811
+    },
+    {
+      "vehicle_type": "PASSENGER AUTO",
+      "count": 37813
+    },
+    {
+      "vehicle_type": "MAXI-CAB",
+      "count": 11372
+    },
+    {
+      "vehicle_type": "LGV",
+      "count": 8255
+    },
+    {
+      "vehicle_type": "GOODS AUTO",
+      "count": 2934
+    },
+    {
+      "vehicle_type": "MOPED",
+      "count": 2199
+    }
+  ],
+  "violation_type_distribution": [
+    {
+      "index": "WRONG PARKING",
+      "count": 164977
+    },
+    {
+      "index": "NO PARKING",
+      "count": 139050
+    },
+    {
+      "index": "PARKING IN A MAIN ROAD",
+      "count": 23943
+    },
+    {
+      "index": "DEFECTIVE NUMBER PLATE",
+      "count": 7848
+    },
+    {
+      "index": "PARKING ON FOOTPATH",
+      "count": 3757
+    },
+    {
+      "index": "PARKING NEAR BUSTOP/SCHOOL/HOSPITAL ETC",
+      "count": 2403
+    },
+    {
+      "index": "DOUBLE PARKING",
+      "count": 2037
+    },
+    {
+      "index": "PARKING NEAR ROAD CROSSING",
+      "count": 1687
+    },
+    {
+      "index": "REFUSE TO GO FOR HIRE",
+      "count": 887
+    },
+    {
+      "index": "PARKING NEAR TRAFFIC LIGHT OR ZEBRA CROSS",
+      "count": 525
+    }
+  ],
+  "hourly_distribution": [
+    {
+      "hour": 0,
+      "violations": 21762
+    },
+    {
+      "hour": 1,
+      "violations": 17155
+    },
+    {
+      "hour": 2,
+      "violations": 24770
+    },
+    {
+      "hour": 3,
+      "violations": 25709
+    },
+    {
+      "hour": 4,
+      "violations": 29102
+    },
+    {
+      "hour": 5,
+      "violations": 34085
+    },
+    {
+      "hour": 6,
+      "violations": 26890
+    },
+    {
+      "hour": 7,
+      "violations": 14608
+    },
+    {
+      "hour": 8,
+      "violations": 8556
+    },
+    {
+      "hour": 9,
+      "violations": 3145
+    },
+    {
+      "hour": 10,
+      "violations": 518
+    },
+    {
+      "hour": 11,
+      "violations": 577
+    },
+    {
+      "hour": 12,
+      "violations": 219
+    },
+    {
+      "hour": 13,
+      "violations": 56
+    },
+    {
+      "hour": 14,
+      "violations": 16
+    },
+    {
+      "hour": 15,
+      "violations": 66
+    },
+    {
+      "hour": 16,
+      "violations": 416
+    },
+    {
+      "hour": 17,
+      "violations": 818
+    },
+    {
+      "hour": 18,
+      "violations": 1971
+    },
+    {
+      "hour": 19,
+      "violations": 10713
+    },
+    {
+      "hour": 20,
+      "violations": 11834
+    },
+    {
+      "hour": 21,
+      "violations": 19763
+    },
+    {
+      "hour": 22,
+      "violations": 22840
+    },
+    {
+      "hour": 23,
+      "violations": 22861
+    }
+  ],
+  "day_of_week_distribution": [
+    {
+      "day_of_week": "Monday",
+      "violations": 38931
+    },
+    {
+      "day_of_week": "Tuesday",
+      "violations": 42930
+    },
+    {
+      "day_of_week": "Wednesday",
+      "violations": 43067
+    },
+    {
+      "day_of_week": "Thursday",
+      "violations": 41528
+    },
+    {
+      "day_of_week": "Friday",
+      "violations": 41702
+    },
+    {
+      "day_of_week": "Saturday",
+      "violations": 43427
+    },
+    {
+      "day_of_week": "Sunday",
+      "violations": 46865
+    }
+  ],
+  "monthly_trend": [
+    {
+      "month_label": "Nov 2023",
+      "violations": 44119
+    },
+    {
+      "month_label": "Dec 2023",
+      "violations": 63555
+    },
+    {
+      "month_label": "Jan 2024",
+      "violations": 65813
+    },
+    {
+      "month_label": "Feb 2024",
+      "violations": 54650
+    },
+    {
+      "month_label": "Mar 2024",
+      "violations": 55231
+    },
+    {
+      "month_label": "Apr 2024",
+      "violations": 15082
+    }
+  ],
+  "zone_approval_rates": [
+    {
+      "police_station": "Wilson Garden",
+      "approval_rate": 78.7
+    },
+    {
+      "police_station": "Jnanabharathi",
+      "approval_rate": 78.6
+    },
+    {
+      "police_station": "Jeevanbheemanagar",
+      "approval_rate": 78.0
+    },
+    {
+      "police_station": "Mico Layout",
+      "approval_rate": 77.0
+    },
+    {
+      "police_station": "Kengeri",
+      "approval_rate": 76.9
+    },
+    {
+      "police_station": "Thalagattapura",
+      "approval_rate": 76.7
+    },
+    {
+      "police_station": "Upparpet",
+      "approval_rate": 76.2
+    },
+    {
+      "police_station": "High ground",
+      "approval_rate": 75.8
+    },
+    {
+      "police_station": "Basavanagudi",
+      "approval_rate": 75.2
+    },
+    {
+      "police_station": "Cubbon Park",
+      "approval_rate": 75.1
+    }
+  ]
+}

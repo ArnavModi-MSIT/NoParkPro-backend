@@ -1,0 +1,72 @@
+{
+  "total_unique_vehicles": 231890,
+  "repeat_offenders_5plus": 3489,
+  "repeat_offenders_10plus": 711,
+  "repeat_offenders_20plus": 87,
+  "top_offender_vehicle": "FKN00GL4424",
+  "top_offender_violations": 55,
+  "top_offender_zone": "Kodigehalli",
+  "most_common_violation": "WRONG PARKING",
+  "top_zones": [
+    {
+      "top_zone": "Upparpet",
+      "repeat_offender_count": 535,
+      "total_repeat_violations": 4351,
+      "top_vehicle": "FKN00GL9771"
+    },
+    {
+      "top_zone": "Shivajinagar",
+      "repeat_offender_count": 529,
+      "total_repeat_violations": 4532,
+      "top_vehicle": "FKN00GL3514"
+    },
+    {
+      "top_zone": "HAL Old Airport",
+      "repeat_offender_count": 496,
+      "total_repeat_violations": 4098,
+      "top_vehicle": "FKN00GL14092"
+    },
+    {
+      "top_zone": "Rajajinagar",
+      "repeat_offender_count": 250,
+      "total_repeat_violations": 1922,
+      "top_vehicle": "FKN00GL2906"
+    },
+    {
+      "top_zone": "Vijayanagara",
+      "repeat_offender_count": 246,
+      "total_repeat_violations": 1925,
+      "top_vehicle": "FKN00GL0420"
+    },
+    {
+      "top_zone": "Malleshwaram",
+      "repeat_offender_count": 176,
+      "total_repeat_violations": 1303,
+      "top_vehicle": "FKN00GL1118"
+    },
+    {
+      "top_zone": "City Market",
+      "repeat_offender_count": 164,
+      "total_repeat_violations": 1101,
+      "top_vehicle": "FKN00GL13988"
+    },
+    {
+      "top_zone": "High ground",
+      "repeat_offender_count": 134,
+      "total_repeat_violations": 1130,
+      "top_vehicle": "FKN00GL17388"
+    },
+    {
+      "top_zone": "Kodigehalli",
+      "repeat_offender_count": 106,
+      "total_repeat_violations": 1061,
+      "top_vehicle": "FKN00GL4424"
+    },
+    {
+      "top_zone": "Ashok Nagar",
+      "repeat_offender_count": 68,
+      "total_repeat_violations": 420,
+      "top_vehicle": "FKN00GL68222"
+    }
+  ]
+}
