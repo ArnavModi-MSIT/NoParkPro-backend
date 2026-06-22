@@ -649,15 +649,7 @@ def forecasts_summary():
     horizon_days = request.args.get("horizonDays", default=7, type=int)
 
     next_day_total = int(round(filtered[pred_col].sum())) if not filtered.empty else 0
-    
-    if horizon_days == 1:
-        projected = next_day_total
-    elif horizon_days == 7:
-        projected = int(round(next_day_total * 7 * 0.92))
-    elif horizon_days == 30:
-        projected = int(round(next_day_total * 30 * 0.85))
-    else:
-        projected = int(round(next_day_total * horizon_days * 0.90))
+    projected = next_day_total
 
     data = {
         "horizonDays": horizon_days,
@@ -672,14 +664,10 @@ def forecasts_summary():
         "generatedAt": now_iso(),
     }
     
-    if horizon_days == 7:
-        data["projectedViolations7d"] = projected
-    else:
-        data["projectedViolations7d"] = None
+    data["projectedViolations7d"] = None
 
     meta = {
-        "note": "horizonDays is dynamic. projectedViolations extrapolates the next-day total "
-                "with decay assumptions for display purposes only."
+        "note": "Predictions are for the next 24 hours only. No hardcoded scaling applied for larger horizons."
     }
     return ok(data, meta)
 
@@ -727,14 +715,7 @@ def forecasts_list():
     page_df, meta = _paginate(filtered)
 
     horizon_days = request.args.get("horizonDays", default=7, type=int)
-    if horizon_days == 1:
-        scale = 1.0
-    elif horizon_days == 7:
-        scale = 7 * 0.92
-    elif horizon_days == 30:
-        scale = 30 * 0.85
-    else:
-        scale = horizon_days * 0.90
+    scale = 1.0
 
     today = datetime.now(IST).strftime("%Y%m%d")
     action_map = {"HIGH": "deploy_unit", "MEDIUM": "monitor", "LOW": "automated"}
